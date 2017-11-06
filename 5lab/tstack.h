@@ -17,9 +17,10 @@ public:
     unsigned int size();
     bool empty();
 
-    TIterator<T> begin();
-    TIterator<T> end();
+    typedef TIterator<TStackItem<T>,T> TStackIterator;
 
+    TStackIterator begin();
+    TStackIterator end();
 
     template <class X>
     friend std::ostream & operator << (std::ostream &os, const TStack<X> &stack);

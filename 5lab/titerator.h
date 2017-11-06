@@ -1,22 +1,22 @@
 #ifndef TITERATOR_H
 #define TITERATOR_H
-#include "tstack.h"
+#include <memory>
 
-template <class T>
+template <class A, class T>
 class TIterator {
 private:
-    std::shared_ptr< TStackItem<T> > elem;
+    std::shared_ptr<A> elem;
 public:
-    TIterator(std::shared_ptr< TStackItem<T> > ptr) {
+    TIterator(std::shared_ptr<A> ptr) {
         elem = ptr;
     }
 
     std::shared_ptr<T> operator *() {
-        return elem->GetValue();
+        return elem->GetFigure();
     }
 
     std::shared_ptr<T> operator ->() {
-        return elem->GetValue();
+        return elem->GetFigure();
     }
 
     void operator ++() {

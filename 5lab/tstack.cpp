@@ -34,13 +34,13 @@ bool TStack<T>::empty() {
 }
 
 template <class T>
-TIterator<T> TStack<T>::begin() {
-    return TIterator<T>(head);
+TIterator<TStackItem<T>, T> TStack<T>::begin() {
+    return TIterator<TStackItem<T>, T>(head);
 }
 
 template <class T>
-TIterator<T> TStack<T>::end() {
-    return TIterator<T>(nullptr);
+TIterator<TStackItem<T>, T> TStack<T>::end() {
+    return TIterator<TStackItem<T>, T>(nullptr);
 }
 
 template <class T>
