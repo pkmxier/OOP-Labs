@@ -1,6 +1,7 @@
 #ifndef TALLOCATIONBLOCK_H
 #define TALLOCATIONBLOCK_H
 #include <cstdlib>
+#include "tarray.h"
 
 class TAllocationBlock {
 private:
@@ -8,8 +9,8 @@ private:
     size_t count;
     size_t freeCount;
 
-    char *usedBlocks;
-    void **freeBlocks;
+    TArray<char> usedBlocks;
+    TArray<void *> freeBlocks;
 public:
     TAllocationBlock(size_t size, size_t count);
     void * Allocate();

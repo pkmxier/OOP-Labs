@@ -1,16 +1,16 @@
 #include "tallocationblock.h"
+#include <iostream>
 
 TAllocationBlock::TAllocationBlock(size_t size, size_t count) {
     this->size = size;
     this->count = count;
 
-    usedBlocks = (char *)malloc(this->size * this->count);
-    freeBlocks = (void **)malloc(sizeof(void *) * this->count);
+    usedBlocks.resize(size * count);
+    freeBlocks.resize(count);
 
     for (int i = 0; i < this->count; ++i) {
-        freeBlocks[i] = usedBlocks + (i * this->size);
+        freeBlocks[i] = usedBlocks.GetData() + (i * this->size);
     }
-
     freeCount = this->count;
 }
 
@@ -32,6 +32,4 @@ bool TAllocationBlock::IsFull() {
 }
 
 TAllocationBlock::~TAllocationBlock() {
-    delete freeBlocks;
-    delete usedBlocks;
 }

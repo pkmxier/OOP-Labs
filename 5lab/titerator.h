@@ -29,11 +29,11 @@ public:
         return iter;
     }
 
-    bool operator ==(TIterator const &iter) {
+    bool operator ==(const TIterator &iter) {
         return elem == iter.elem;
     }
 
-    bool operator !=(TIterator const &iter) {
+    bool operator !=(const TIterator &iter) {
         return !(*this == iter);
     }
 };

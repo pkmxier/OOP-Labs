@@ -24,7 +24,7 @@ std::shared_ptr<T> TStackItem<T>::GetFigure() const {
 }
 
 template <class T>
-TAllocationBlock TStackItem<T>::allocator(sizeof(TStackItem<T>), 100);
+TAllocationBlock TStackItem<T>::allocator(sizeof(TStackItem<T>), 100000);
 
 template<class T>
 void * TStackItem<T>::operator new(size_t size) {

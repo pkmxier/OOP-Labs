@@ -4,6 +4,8 @@
 #include "octagon.h"
 #include "hexagon.h"
 #include "tstack.h"
+#include <ctime>
+#include <chrono>
 
 int main(int argc, char *argv[]) {
     point hexagon[6] = {{0, 0}, {0, 1}, {1, 2},
