@@ -31,6 +31,7 @@ Triangle::Triangle(const Triangle &orig) {
 
 void Triangle::Print() {
     std::cout << "Sides of triangle: " << side_a << ", " << side_b << ", " << side_c << std::endl;
+    std::cout << "Square = " << Square() << std::endl;
 }
 
 bool Triangle::DoesExist() {

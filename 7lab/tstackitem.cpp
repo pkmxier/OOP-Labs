@@ -1,16 +1,14 @@
 #include "tstackitem.h"
 
 template <class T>
-TStackItem<T>::TStackItem(const std::shared_ptr<T> &figure) {
+TStackItem<T>::TStackItem(std::shared_ptr<T> &figure) {
     this->figure = figure;
     this->next = nullptr;
 }
 
 template <class T>
-std::shared_ptr< TStackItem<T> > TStackItem<T>::SetNext(std::shared_ptr< TStackItem<T> > &next) {
-    std::shared_ptr< TStackItem<T> > current = this->next;
+void TStackItem<T>::SetNext(std::shared_ptr< TStackItem<T> > next) {
     this->next = next;
-    return current;
 }
 
 template <class T>
@@ -19,26 +17,14 @@ std::shared_ptr< TStackItem<T> > TStackItem<T>::GetNext() {
 }
 
 template <class T>
-std::shared_ptr<T> TStackItem<T>::GetFigure() const {
+std::shared_ptr<T> & TStackItem<T>::GetFigure() {
     return this->figure;
 }
 
 template <class T>
-TAllocationBlock TStackItem<T>::allocator(sizeof(TStackItem<T>), 100000);
-
-template<class T>
-void * TStackItem<T>::operator new(size_t size) {
-    return allocator.Allocate();
-}
-
-template<class T>
-void TStackItem<T>::operator delete(void *ptr) {
-    allocator.Deallocate(ptr);
-}
-
-template <class T>
-std::ostream & operator <<(std::ostream &os, const TStackItem<T> &rhs) {
-    os << *rhs.figure;
+std::ostream & operator <<(std::ostream &os, TStackItem<T> &rhs) {
+    rhs.GetFigure()->Print();
+    //os << *rhs.GetFigure();
     return os;
 }
 
@@ -46,5 +32,5 @@ template <class T>
 TStackItem<T>::~TStackItem() {
 }
 
-template class TStackItem<Figure>;
-template std::ostream & operator <<(std::ostream &os, const TStackItem<Figure> &rhs);
+template class TStackItem< TArray<Figure> >;
+template std::ostream & operator <<(std::ostream &os, TStackItem< TArray<Figure> > &rhs);

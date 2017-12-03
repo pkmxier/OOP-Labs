@@ -20,6 +20,7 @@ Hexagon::Hexagon(const Hexagon &rhs) {
 
 void Hexagon::Print() {
     std::cout << *this;
+    std::cout << "Square = " << Square() << std::endl;
 }
 
 double Hexagon::Square() {

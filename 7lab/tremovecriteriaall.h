@@ -1,11 +1,14 @@
 #ifndef TREMOVECRITERIAALL_H
 #define TREMOVECRITERIAALL_H
+#include "tremovecriteria.h"
 
-
-class TRemoveCriteriaAll
-{
+template <class T>
+class TRemoveCriteriaAll : public TRemoveCriteria<T> {
 public:
-    TRemoveCriteriaAll();
+    TRemoveCriteriaAll() {}
+    bool doesFit(std::shared_ptr<T> &val) override {
+        return true;
+    }
 };
 
 #endif // TREMOVECRITERIAALL_H

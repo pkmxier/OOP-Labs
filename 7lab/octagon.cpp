@@ -30,6 +30,7 @@ void Octagon::Print() {
         std::cout << "x" << i + 1 << " = " << set[i].x << ", "
                   << "y" << i + 1 << " = " << set[i].y << std::endl;
     }
+    std::cout << "Square = " << Square() << std::endl;
 }
 
 double Octagon::Square() {

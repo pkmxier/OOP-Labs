@@ -3,17 +3,19 @@
 #include "tstackitem.h"
 #include "hexagon.h"
 #include "titerator.h"
+#include "tarray.h"
+#include "tremovecriteria.h"
 
-template <class T>
+template <class T, class Z>
 class TStack {
 private:
-    std::shared_ptr< TStackItem<T> > head;
+    std::shared_ptr< TStackItem< T > > head;
     unsigned int _size;
 public:
     TStack();
 
-    void push(std::shared_ptr<T> &&figure);
-    std::shared_ptr<T> pop();
+    void insert(std::shared_ptr<Z> &&val);
+    void remove(TRemoveCriteria<Z> *criteria);
     unsigned int size();
     bool empty();
 
@@ -22,8 +24,8 @@ public:
     TStackIterator begin();
     TStackIterator end();
 
-    template <class X>
-    friend std::ostream & operator << (std::ostream &os, const TStack<X> &stack);
+    template <class X, class Y>
+    friend std::ostream & operator << (std::ostream &os, const TStack<X, Y> &stack);
 
     virtual ~TStack();
 };

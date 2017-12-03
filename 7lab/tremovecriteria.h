@@ -1,11 +1,11 @@
 #ifndef TREMOVECRITERIA_H
 #define TREMOVECRITERIA_H
+#include <memory>
 
-
-class TRemoveCriteria
-{
+template <class T>
+class TRemoveCriteria {
 public:
-    TRemoveCriteria();
+    virtual bool doesFit(std::shared_ptr<T> &val) = 0;
 };
 
 #endif // TREMOVECRITERIA_H
