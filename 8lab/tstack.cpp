@@ -82,9 +82,9 @@ void TStack<T>::sort() {
         while (!empty()) {
             std::shared_ptr<T> val = pop();
             if (*val < *m) {
-                l.push(val);
+                l.push(std::move(val));
             } else {
-                r.push(val);
+                r.push(std::move(val));
             }
         }
 
@@ -95,7 +95,7 @@ void TStack<T>::sort() {
             push(l.pop_last());
         }
 
-        push(m);
+        push(std::move(m));
 
         while (!r.empty()) {
             push(r.pop_last());
@@ -105,7 +105,7 @@ void TStack<T>::sort() {
 
 template<class T>
 std::future<void> TStack<T>::back_sort() {
-    std::packaged_task<void (void)> task(std::bind(std::mem_fn(&TStack<T>::thread_sort()), this));
+    std::packaged_task<void(void)> task(std::bind(std::mem_fn(&TStack<T>::thread_sort), this));
     std::future<void> res(task.get_future());
     std::thread thread(std::move(task));
     thread.detach();
@@ -121,9 +121,9 @@ void TStack<T>::thread_sort() {
         while (!empty()) {
             std::shared_ptr<T> val = pop_last();
             if (*val < *m) {
-                l.push(val);
+                l.push(std::move(val));
             } else {
-                r.push(val);
+                r.push(std::move(val));
             }
         }
 
@@ -136,7 +136,7 @@ void TStack<T>::thread_sort() {
             push(l.pop_last());
         }
 
-        push(m);
+        push(std::move(m));
 
         right.get();
 

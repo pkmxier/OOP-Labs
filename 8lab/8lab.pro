@@ -11,7 +11,6 @@ SOURCES += main.cpp \
     triangle.cpp \
     tstack.cpp \
     tstackitem.cpp \
-    tallocationblock.cpp \
     tarray.cpp
 
 HEADERS += \
@@ -23,5 +22,4 @@ HEADERS += \
     triangle.h \
     tstack.h \
     tstackitem.h \
-    tallocationblock.h \
     tarray.h

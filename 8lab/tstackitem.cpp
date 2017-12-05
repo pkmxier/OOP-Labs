@@ -7,7 +7,7 @@ TStackItem<T>::TStackItem(const std::shared_ptr<T> &figure) {
 }
 
 template <class T>
-std::shared_ptr< TStackItem<T> > TStackItem<T>::SetNext(std::shared_ptr< TStackItem<T> > &next) {
+std::shared_ptr< TStackItem<T> > TStackItem<T>::SetNext(std::shared_ptr< TStackItem<T> > next) {
     std::shared_ptr< TStackItem<T> > current = this->next;
     this->next = next;
     return current;
@@ -21,19 +21,6 @@ std::shared_ptr< TStackItem<T> > TStackItem<T>::GetNext() {
 template <class T>
 std::shared_ptr<T> TStackItem<T>::GetFigure() const {
     return this->figure;
-}
-
-template <class T>
-TAllocationBlock TStackItem<T>::allocator(sizeof(TStackItem<T>), 100000);
-
-template<class T>
-void * TStackItem<T>::operator new(size_t size) {
-    return allocator.Allocate();
-}
-
-template<class T>
-void TStackItem<T>::operator delete(void *ptr) {
-    allocator.Deallocate(ptr);
 }
 
 template <class T>

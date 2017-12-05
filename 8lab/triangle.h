@@ -6,9 +6,9 @@
 
 class Triangle : public Figure {
 private:
-    size_t side_a;
-    size_t side_b;
-    size_t side_c;
+    double side_a;
+    double side_b;
+    double side_c;
 public:
     Triangle();
     Triangle(std::istream &);
