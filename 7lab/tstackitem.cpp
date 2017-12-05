@@ -24,7 +24,6 @@ std::shared_ptr<T> & TStackItem<T>::GetFigure() {
 template <class T>
 std::ostream & operator <<(std::ostream &os, TStackItem<T> &rhs) {
     rhs.GetFigure()->Print();
-    //os << *rhs.GetFigure();
     return os;
 }
 

@@ -6,31 +6,22 @@ TStack<T, Z>::TStack() : head(nullptr), _size(0) {
 
 template<class T, class Z>
 void TStack<T, Z>::insert(std::shared_ptr<Z> &&val) {
-    if (head != nullptr) {
-        if (head->GetFigure()->GetSize() < 5) {
-            head->GetFigure()->push(val);
-            std::cout << "Element added" << std::endl;
-            return;
-        } else {
-            std::shared_ptr<T> tmp(new T);
-            tmp->push(val);
-            std::shared_ptr< TStackItem<T> > tmp_item(new TStackItem<T>(tmp));
-            tmp_item->SetNext(head);
-            head = tmp_item;
-            std::cout << "Created new stack node" << std::endl;
-            std::cout << "Element added" << std::endl;
-            ++_size;
-        }
-    } else {
-        std::shared_ptr<T> tmp(new T);
-        tmp->push(val);
-        std::shared_ptr< TStackItem<T> > tmp_item(new TStackItem<T>(tmp));
-        tmp_item->SetNext(nullptr);
-        head = tmp_item;
-        ++_size;
-        std::cout << "Created new stack node" << std::endl;
+    if (head != nullptr && head->GetFigure()->GetSize() < MAX_COUNT) {
+        head->GetFigure()->push(val);
+
         std::cout << "Element added" << std::endl;
+        return;
     }
+
+    std::shared_ptr<T> tmp(new T);
+    tmp->push(val);
+    std::shared_ptr< TStackItem<T> > tmp_item(new TStackItem<T>(tmp));
+    tmp_item->SetNext(head);
+    head = tmp_item;
+    ++_size;
+
+    std::cout << "Created new stack node" << std::endl;
+    std::cout << "Element added" << std::endl;
 }
 
 template<class T, class Z>

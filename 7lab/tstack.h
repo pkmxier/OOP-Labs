@@ -11,6 +11,7 @@ class TStack {
 private:
     std::shared_ptr< TStackItem< T > > head;
     unsigned int _size;
+    static const int MAX_COUNT = 5;
 public:
     TStack();
 

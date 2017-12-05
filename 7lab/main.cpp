@@ -4,12 +4,16 @@
 #include "octagon.h"
 #include "hexagon.h"
 #include "tstack.h"
-#include <ctime>
 #include "tremovecriteriaall.h"
 #include "tremovecriteriavalue.h"
 #include "tremovecriterialesssquare.h"
 
 int main(int argc, char *argv[]) {
+    VintagePortWine wine("Tawny Port", "Ruby", 1887);
+
+    wine.print_exclusive();
+
+    return 0;
     point hexagon[6] = {{0, 0}, {0, 1}, {1, 2},
                         {2, 1}, {2, 0}, {1, -1}};
 
@@ -30,7 +34,7 @@ int main(int argc, char *argv[]) {
         std::cout << *i;
     }
 
-    TRemoveCriteriaLessSquare<Figure> criteria(6);
+    TRemoveCriteriaAll<Figure> criteria;
 
     stack.remove(&criteria);
 }

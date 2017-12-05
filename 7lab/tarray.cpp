@@ -3,7 +3,7 @@
 template <class T>
 TArray<T>::TArray() {
     size = 0;
-    capacity = 5;
+    capacity = 6;
     data = new std::shared_ptr<T>[capacity];
 }
 
@@ -47,8 +47,23 @@ void TArray<T>::pop(int i) {
 
 template<class T>
 void TArray<T>::push(std::shared_ptr<T> &val) {
-    data[size] = val;
-    ++size;
+    int i = 0;
+    for (i = 0; i < size; ++i) {
+        if (data[i]->Square() > val->Square()) {
+            for (int j = size; j > i; --j) {
+                data[j] = data[j - 1];
+            }
+
+            data[i] = val;
+            ++size;
+            return;
+        }
+    }
+
+    if (i == size) {
+        data[size++] = val;
+    }
+
 }
 
 template<class T>
@@ -69,7 +84,4 @@ TArray<T>::~TArray() {
     delete [] data;
 }
 
-template class TArray<char>;
-template class TArray<void *>;
-template class TArray<int>;
 template class TArray<Figure>;
